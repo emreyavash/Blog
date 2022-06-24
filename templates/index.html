@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>NewsBlog | {% block title %}{% endblock title %}</title>
+
+    <link href="//fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static '/css/style-starter.css' %} " type="text/css" media="all">
+  </head>
+  <body>
+<!-- header -->
+{% include 'partials/header.html' %}
+<!-- //header -->
+<!-- /homeblock1-->
+
+<!-- //homeblock1-->
+
+{%block content%}
+{%endblock%}
+<!-- footer-28 block -->
+{% include 'partials/footer.html' %}
+<!-- //footer-28 block -->
+
+<!-- disable body scroll which navbar is in active -->
+<script>
+  $(function () {
+    $('.navbar-toggler').click(function () {
+      $('body').toggleClass('noscroll');
+    })
+  });
+</script>
+<!-- disable body scroll which navbar is in active -->
+
+<!-- Template JavaScript -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %} "></script>
+
+<!-- theme changer js -->
+<script src=" {% static 'js/theme-change.js' %} "></script>
+<!-- //theme changer js -->
+
+<!-- courses owlcarousel -->
+<script src="{% static 'js/owl.carousel.js' %} "></script>
+
+<!-- script for testimonials -->
+<script>
+  $(document).ready(function () {
+    $('.owl-testimonial').owlCarousel({
+      loop: true,
+      margin: 0,
+      nav: true,
+      responsiveClass: true,
+      autoplay: false,
+      autoplayTimeout: 5000,
+      autoplaySpeed: 1000,
+      autoplayHoverPause: false,
+      responsive: {
+        0: {
+          items: 1,
+          nav: false
+        },
+        480: {
+          items: 1,
+          nav: false
+        },
+        667: {
+          items: 1,
+          nav: true
+        },
+        1000: {
+          items: 1,
+          nav: true
+        }
+      }
+    })
+  })
+</script>
+<!-- //script for testimonials -->
+
+<!-- bootstrap -->
+<script src="{% static 'js/bootstrap.min.js' %} "></script>
+
+</body>
+
+</html>

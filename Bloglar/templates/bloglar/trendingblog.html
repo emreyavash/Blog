@@ -1,0 +1,37 @@
+{% load static  %}
+<div class="container-fluid px-sm-5 py-lg-5 py-md-4">
+    <!-- block -->
+        <h3 class="section-title-left mb-4"> Trending Now</h3>
+    <div class="row">
+        {% for tb in trendingblogs  %}
+        <div class="col-lg-6 mt-lg-0 mt-4">
+            <div class="bg-clr-white hover-box">
+                <div class="row">
+                    <div class="col-sm-6 position-relative">
+                        <a href="#blog-single.html">
+                            <img class="card-img-bottom d-block radius-image-full" src="{{tb.blog_thumbnail.url}}"
+                                alt="Card image cap">
+                        </a>
+                    </div>
+                    <div class="col-sm-6 card-body blog-details align-self">
+                        <span class="label-blue">{{tb.category}}</span>
+                        <a href="#blog-single.html" class="blog-desc">{{tb.blog_title}} </a>
+                        <p>{{tb.blog_description|truncatechars:80}}</p>
+                        <div class="author align-items-center mt-3">
+                            <img src="{{tb.writer.profil_image.url}}" alt="" class="img-fluid rounded-circle" />
+                            <ul class="blog-meta">
+                                <li>
+                                    <a href="author.html">{{tb.writer.first_name}} {{tb.writer.last_name}}</a> </a>
+                                </li>
+                                <li class="meta-item blog-lesson">
+                                    <span class="meta-value">{{tb.create_blog_date}} </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

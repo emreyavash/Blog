@@ -1,0 +1,12 @@
+
+<div class="topics">
+    <h3 class="section-title-left mb-4"> Topics</h3>
+    {% for category in categories %}
+        <a href="beauty.html" class="topics-list mt-3 mb-3">
+            <div class="list1 ">
+                <span class="fa fa-dot-circle-o"></span>
+                <h4>{{category.CategoryName}} </h4>
+            </div>
+        </a>
+    {% endfor %}
+</div>

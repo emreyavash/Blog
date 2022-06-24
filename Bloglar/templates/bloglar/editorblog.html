@@ -1,0 +1,36 @@
+{% load static %}
+{% if error %}
+    {{error}}
+{% else %}
+{% for blog in blogs  %}
+<div class="col-lg-6 col-md-6 mt-md-0 mt-sm-5 mt-4">
+    <div class="card">
+        <div class="card-header p-0 position-relative">
+            <a href="{% url 'blog_detail' blog.id %}">
+                <img class="card-img-bottom d-block radius-image-full"
+                    src="{{blog.blog_thumbnail.url}}" alt="Card image cap">
+            </a>
+        </div>
+        <div class="card-body blog-details">
+            <span class="label-blue">{{blog.category}}</span>
+            <a href="{% url 'blog_detail' blog.id %}" class="blog-desc">
+                {{blog.blog_title}}
+            </a>
+            <p>{{blog.blog_description|truncatechars:80}}</p>
+            <div class="author align-items-center mt-3 mb-1">
+                <img src="{{blog.writer.profil_image.url}}" alt="" class="img-fluid rounded-circle" />
+                <ul class="blog-meta">
+                    <li>
+                        <a href="author.html">{{blog.writer.first_name}} {{blog.writer.last_name}}</a> </a>
+                    </li>
+                    <li class="meta-item blog-lesson">
+                        <span class="meta-value"> {{blog.create_blog_date}} </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+

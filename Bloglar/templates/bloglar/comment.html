@@ -1,0 +1,134 @@
+{% load static %}
+    {% if error %}
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="comments">
+                <h3 class="aside-title ">Son Yorumlar(0)</h3>
+                <div class="comments-grids">
+                    <div class="media-grid">
+                            {{error}}
+                        
+                    </div>
+                  
+                </div>
+
+                
+            </div>
+            <div class="leave-comment-form" id="comment">
+                <h3 class="aside-title">Yorumunuzu yazabilirsiniz.</h3>
+                <form action="{% url 'blog_comment' blog.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-grids">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Your Name"
+                                required="">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control" placeholder="Email"
+                                required="">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="comment" class="form-control" placeholder="Your Comment"
+                                required=""></textarea>
+                        </div>
+                    </div>
+                    <div class="submit text-right">
+                        <button class="btn btn-style btn-primary">Yorumunu Gönder</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    {% else %}
+    
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="comments">
+                        <h3 class="aside-title ">Son Yorumlar({{commentCount}})</h3>
+                        <div class="comments-grids">
+                            {% for commentBlog in commentBlogs  %}
+                            <div class="media-grid">
+                                <div class="media">
+                                    <a class="comment-img" href="#url"><img src="{% static 'images/a1.jpg' %}"
+                                            class="img-responsive" width="100px" alt="placeholder image"></a>
+                                    <div class="media-body comments-grid-right">
+                                        <h5>{{commentBlog.sender_name}}</h5>
+                                        <ul class="p-0 comment">
+                                            <li class="">{{commentBlog.created_commnet_date}}</li>
+                                            <li>
+                                                <a href="#comment" class="text-primary">Reply</a>
+                                            </li>
+                                        </ul>
+                                        <p>{{commentBlog.comment}}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% comment %} <div class="media-grid">
+                                <div class="media">
+                                    <a class="comment-img" href="#url"><img src="{% static 'images/a2.jpg' %}"
+                                            class="img-responsive" width="100px" alt="placeholder image"></a>
+                                    <div class="media-body comments-grid-right">
+                                        <h5>Charlie</h5>
+                                        <ul class="p-0 comment">
+                                            <li class="">July 15th, 2020 at 05:45 pm </li>
+                                            <li>
+                                                <a href="#comment" class="text-primary">Reply</a>
+                                            </li>
+                                        </ul>
+                                        <p>Mattis ut hendrerit non, facilisis eget mauris. Sed ultricies nec purus
+                                            quis
+                                            tempor. Phasellus eu nec purus quis tempor.
+                                        </p>
+                                        <div class="media mt-4 mb-0 border-0 px-0 pb-0">
+                                            <a class="comment-img" href="#url"><img src="{% static 'images/a3.jpg' %}"
+                                                    class="img-responsive" width="100px" alt="placeholder image"></a>
+                                            <div class="media-body comments-grid-right">
+                                                <h5>Jack Harry</h5>
+                                                <ul class="p-0 comment">
+                                                    <li class="">July 15th, 2020 at 11:00 am</li>
+                                                    <li>
+                                                        <a href="#comment" class="text-primary">Reply</a>
+                                                    </li>
+                                                </ul>
+                                                <p>Mattis ut hendrerit non, facilisis eget mauris. Sed ultricies nec
+                                                    purus quis
+                                                    tempor. dolor set.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+
+
+                    <div class="leave-comment-form" id="comment">
+                        <h3 class="aside-title">Yorumunuzu yazabilirsiniz.</h3>
+                        <form action="{% url 'blog_comment' blog.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-grids">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" placeholder="Your Name"
+                                        required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control" placeholder="Email"
+                                        required="">
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="comment" class="form-control" placeholder="Your Comment"
+                                        required=""></textarea>
+                                </div>
+                            </div>
+                            <div class="submit text-right">
+                                <button class="btn btn-style btn-primary">Yorumunu Gönder</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}

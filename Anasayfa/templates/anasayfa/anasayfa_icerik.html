@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Anasayfa{% endblock title %}
+
+{% block content %}
+
+{% include 'partials/homeblock.html' %}
+<section class="w3l-testimonials" id="testimonials">
+    <!-- main-slider -->
+    {% include 'bloglar/sliderblog.html' %}
+    <!-- /main-slider -->
+</section>
+<div class="w3l-homeblock2 py-5">
+    <div class="container py-lg-5 py-md-4">
+        <!-- block -->
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="section-title-left mb-4"> Editor's Pick </h3>
+                <div class="row">
+                    {% include 'bloglar/editorblog.html' %}
+                </div>
+                <div class="mt-4 left-right bg-clr-white p-3">
+                    <h3 class="section-title-left align-self pl-2 mb-sm-0 mb-3">Advertise with us </h3>
+                    <a class="btn btn-style btn-primary" href="#url">Learn more</a>
+                </div>
+            </div>
+            <div class="col-lg-4 trending mt-lg-0 mt-5">
+                {% include 'category/category.html' %}
+            
+                <div class="sponsers mt-5">
+                    <h3 class="section-title-left mb-4"> Our sponsers</h3>
+                    <a href="#ad-banner"><img src="{% static 'images/ad.jpg' %}" alt="" class="img-fluid radius-image-full" /></a>
+                    <a href="#advertise" class="text-center d-block text-uppercase">Advertise with us </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w3l-homeblock3 py-5">
+    {% comment %} Top Pick's Of Month {% endcomment %}
+    {% include 'bloglar/TopPicksOfMonth.html' %}
+</div>
+
+<div class="w3l-homeblock2 w3l-homeblock6 py-5">
+    {% comment %} Trending Now {% endcomment %}
+    {% include 'bloglar/trendingblog.html' %}
+</div>
+{% endblock content %}

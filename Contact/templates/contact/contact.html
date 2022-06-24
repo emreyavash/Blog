@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+{% block title %}İletişim{% endblock %}
+{% block content %}
+
+<div class="w3l-contact-10 py-5" id="contact">
+    <div class="form-41-mian pt-lg-4 pt-md-3 pb-md-4">
+        <div class="container">
+            <div class="heading">
+                <h3 class="category-title mb-3">Bize Ulaşın</h3>
+                
+            </div>
+            <div class="row">
+                <div class="col-lg-8 form-inner-cont">
+                    <form  method="post" class="signin-form">
+                        {% csrf_token %}
+                        <div class="form-grids">
+                            <div class="form-input">
+                                <input type="text" name="name" id="w3lName" placeholder="İsim Soyisim"
+                                    required="" />
+                            </div>
+                            <div class="form-input">
+                                <input type="text" name="subject" id="w3lSubject" placeholder="Konu "
+                                    required />
+                            </div>
+                            <div class="form-input">
+                                <input type="email" name="email" id="w3lSender" placeholder="Email "
+                                    required />
+                            </div>
+                            <div class="form-input">
+                                <input type="text" name="phone" id="w3lPhone" placeholder="Telefon Numarası"
+                                    required />
+                            </div>
+                        </div>
+                        <div class="form-input">
+                            <textarea name="message" id="w3lMessage" placeholder="Mesajınız..."
+                                required=""></textarea>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-style btn-primary">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-4 contacts-5-grid-main section-gap mt-lg-0 mt-5">
+                    <div class="contacts-5-grid">
+                        <h3 class="section-title-left mb-4"> Advertise with us</h3>
+                        <div class="map-content-5">
+                            <section class="tab-content">
+                                <div class="contact-type">
+                                    <div class="address-grid mb-4">
+                                        <h6>Address</h6>
+                                        <p>#302, 5th Floor, ALHK-2247 ek, Settlers Lane, New York.</p>
+                                    </div>
+                                    <div class="address-grid mb-4">
+                                        <h6>Email Address</h6>
+                                        <a href="mailto:mail@example.com" class="link1">mail@example.com</a>
+
+                                    </div>
+                                    <div class="address-grid">
+                                        <h6>Phone Number</h6>
+                                        <a href="tel:+12 324-016-695" class="link1">+12 324-016-695</a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //contacts-5-grid -->
+    </div>
+</div>
+
+<div class="contacts-sub-5">
+<iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=T%C3%BCrkiye%20&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+{% if messages %}
+        {% for message in messages  %}
+            <script>
+                alert("{{message}}");
+            </script>
+        {% endfor %}
+{% endif %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% endblock content %}
+

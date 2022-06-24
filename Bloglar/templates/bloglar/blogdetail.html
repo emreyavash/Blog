@@ -1,0 +1,219 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title%}{{blog.blog_title}}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style-liberty.css' %}">
+
+<!-- single post -->
+<section class="text-11 py-5">
+    <div class="text11 py-lg-5 py-md-4">
+        <div class="container">
+            <div class="blog-title px-md-5">
+                <h3 class="title-big">{{blog.blog_title}}
+                </h3>
+                <ul class="blog-list">
+                    <li>
+                        <p> Posted on <strong>{{blog.create_blog_date}}</strong></p>
+                    </li>
+                    <li>
+                        <p> By <a href="#author"><strong>{{blog.writer.first_name}} {{blog.writer.last_name}}</strong></a></p>
+                    </li>
+                    <li>
+                        <p> Published in <a href="#category"><strong>{{blog.category.CategoryName}}</strong></a></p>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="image mb-sm-5 mb-4" style="border:1px solid black;">
+            <img src="{{blog.blog_image.url}}" alt="" style="object-fit:cover; width:100%;height:650px;"  class="img-fluid radius-image-full">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="text11-content">
+                        <h4 class="mt-sm-3"> How to create an Art that shows the beauty in everyone’s ideas of flaws.</h4>
+                        <p class="mt-4 mb-3">Fusce faucibus ante vitae justo efficitur elementum. Donec et ipsum
+                            faucibus
+                            arcu
+                            ipsum elementum, luctus justo. ac purus semper. Fusce faucibus ante vitae justo efficitur
+                            sed et
+                            elementum. Donec ipsum
+                            faucibus arcu elementum, luctus justo. ac purus semper. Fusce faucibus ante vitae justo
+                            efficitur
+                            elementum. Donec ipsum faucibus arcu vitae justo efficitur elementum.</p>
+                        <p class="mb-3">Fusce faucibus ante vitae justo efficitur elementum. Donec ipsum faucibus arcu
+                            elementum, luctus
+                            justo. ac purus semper. Fusce faucibus ante vitae justo efficitur elementum. Donec ipsum
+                            faucibus
+                            arcu elementum, luctus justo. ac purus semper."</p>
+                        <h5 class="quote">For dull and lifeless skin, mix apple juice with honey. Apply a thin layer to your face, and leave it for 5 minutes.
+                            <footer class="blockquote-footer mt-3"> Kelvin edison </footer>
+                        </h5>
+
+                        <p class="mb-3">Lorem faucibus fusce ante vitae justo efficitur elementum. Donec ipsum faucibus
+                            arcu elementum, luctus justo. ac purus semper. Fusce faucibus ante vitae justo efficitur
+                            elementum. Donec ipsum faucibus. Donec ipsum faucibus arcu elementum..</p>
+                        <div class="sing-post-thumb mb-lg-5 mb-4 row pt-3">
+                            <div class="col-md-6">
+                                <a href="#url"><img src="{{blog.blog_thumbnail.url}}" class="img-fluid" alt=""></a>
+                            </div>
+                            <div class="col-md-6 mt-md-0 mt-3 align-self">
+                                <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
+                                    tempora
+                                    quisquam incidunt accusantium culpa voluptatibus, nulla qui a quibusdam porro?
+                                    luctus
+                                    justo. ac purus semper. Fusce faucibus ante vitae justo efficitur elementum. Donec
+                                    ipsum.</p>
+                            </div>
+                        </div>
+                        <h4 class="mb-md-4 mb-3">Fusce faucibus ante vitae justo efficitur</h4>
+                        <p class="mb-4">Lorem faucibus fusce ante vitae justo efficitur elementum. Donec ipsum faucibus
+                            arcu elementum, luctus justo. ac purus semper. Fusce faucibus ante vitae justo efficitur
+                            elementum. Donec ipsum faucibus. Donec ipsum faucibus arcu Donec ipsum faucibus
+                            arcu elementum, luctus justo. ac purus semper. </p>
+                        <div class="text-list mb-4">
+                            <ol>
+                                <li>Quisque sagittis lacus eu lorem sodalesd enean adipiscing.</li>
+                                <li>Donec ipsum faucibus arcu elementum, luctus justo.</li>
+                                <li>Nam libero tempore, cum soluta nobis est eligendi optio </li>
+                                <li>Sed ut perspiciatis unde omnis natus</li>
+                            </ol>
+                        </div>
+                        <h4 class="mb-md-4 mb-3">Quisque sagittis lacus eu lorem sodales </h4>
+                        <p class="mb-3">Lorem faucibus fusce ante vitae justo efficitur elementum. Donec ipsum faucibus
+                            arcu elementum, luctus justo. ac purus semper. Fusce faucibus ante vitae justo efficitur
+                            elementum. Donec ipsum faucibus. Donec ipsum faucibus arcu.</p>
+                        <p class="mb-3">Fusce faucibus arcu faucibus ante vitae justo efficitur
+                            elementum. Donec ipsum faucibus. Donec ipsum faucibus arcu.</p>
+
+                        <div class="social-share-blog mt-5">
+
+                            <ul class="column3 tags m-0 p-0">
+                                <li>
+                                    <p class="m-0 mr-sm-4 mr-2">Tags :</p>
+                                </li>
+                                <li><a href="#url" class="btn-small">Fashion</a></li>
+                                <li><a href="#url" class="btn-small">Beauty</a></li>
+
+                            </ul>
+                            <ul class="column3 social m-0 p-0">
+                                <li>
+                                    <p class="m-0 mr-sm-4 mr-2">Share this post :</p>
+                                </li>
+                                <li><a href="#facebook" class="facebook"><span class="fa fa-facebook-square"></span></a>
+                                </li>
+                                <li><a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a></li>
+                                <li><a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a></li>
+                                <li><a href="#envelope" class="mail"><span class="fa fa-envelope"></span></a></li>
+                            </ul>
+                        </div>
+                  
+                    </div>
+
+                </div>
+                <div class="sidebar-side col-lg-4 col-md-12 col-sm-12 mt-lg-0 mt-5">
+                    <aside class="sidebar">
+
+                        <!-- Author card Widget-->
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <div class="author">
+                                <div class="sidebar-title">
+                                    <h4>About author</h4>
+                                </div>
+                                <div class="author-detalis">
+                                    <a href="#author" class="author-image"><img src="{{blog.writer.profil_image.url}}"
+                                            alt="author image" class="img-fluid"></a>
+                                    <div class="author-info">
+                                        <a href="#author-name" class="author-name">{{blog.writer.first_name}} {{blog.writer.last_name}}</a>
+                                        <a href="#follow" class="btn btn-outline-primary">Follow </a>
+                                    </div>
+                                </div>
+                                <p class="mt-2">I am a Fashion designer, Makeup artist, and Blog
+                                    writer.</p>
+                            </div>
+                        </div>
+                        <!-- //Author card Widget-->
+
+                        <!--Blog Category Widget-->
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <div class="sidebar-title">
+                                <h4>Categories</h4>
+                            </div>
+                            <ul class="blog-cat">
+                                <li><a href="#url">Beauty </a></li>
+                                <li><a href="#url">Fashion and Style</a></li>
+                                <li><a href="#url">Food and wellness</a></li>
+                                <li><a href="#url">Lifestyle</a></li>
+                            </ul>
+                        </div>
+
+
+                        <!-- Popular Post Widget-->
+                        <div class="sidebar-widget popular-posts">
+                            <div class="sidebar-title">
+                                <h4>Recent Posts</h4>
+                            </div>
+                            {% for rp in resentPosts  %}
+                            <article class="post">
+                                <figure class="post-thumb"><img src="{{rp.blog_thumbnail.url}}" width=200 alt=""></figure>
+                                <div class="text"><a href="{% url 'blog_detail' rp.id %}">
+                                   {{rp.blog_title}}</a>
+                                </div>
+                                <div class="post-info">{{blog.create_blog_date}}</div>
+                            </article>
+                            {% endfor %}
+                       
+
+                        </div>
+
+                
+
+                    </aside>
+                </div>
+            </div>
+
+            {% comment %} Comment {% endcomment %}
+            {% include "bloglar/comment.html" %}
+        </div>
+    </div>
+</section>
+<!-- //single post -->
+
+<div class="w3l-homeblock2 py-5">
+    <div class="container py-lg-5 py-md-4">
+        <h3 class="section-title-left mb-4">You may also like </h3>
+        <div class="row">
+            {% for lb in likeBlogs  %}
+            <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
+                <div class="card">
+                    <div class="card-header p-0 position-relative">
+                        <a href="blog-single.html">
+                            <img class="card-img-bottom d-block radius-image-full" src="{{lb.blog_thumbnail.url}}"
+                                alt="Card image cap">
+                        </a>
+                    </div>
+                    <div class="card-body blog-details">
+                        <span class="label-blue">{{lb.category.CategoryName}}</span>
+                        <a href="blog-single.html" class="blog-desc">{{lb.blog_title}}
+                        </a>
+                        <p>{{lb.blog_description|truncatechars:70}}</p>
+                        <div class="author align-items-center mt-3 mb-1">
+                            <img src="{{lb.writer.profil_image.url}}" alt="" class="img-fluid rounded-circle">
+                            <ul class="blog-meta">
+                                <li>
+                                    <a href="author.html">{{lb.writer.first_name}} {{lb.writer.last_name}}</a>
+                                </li>
+                                <li class="meta-item blog-lesson">
+                                    <span class="meta-value">  {{lb.create_blog_date}} </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

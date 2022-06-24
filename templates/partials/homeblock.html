@@ -1,0 +1,17 @@
+<section class="w3l-homeblock1 py-sm-5 py-4">
+    <div class="container py-md-4">
+        <div class="grids-area-hny main-cont-wthree-fea row">
+            {% for category in categories %}
+            <div class="col-lg-3 col-6 grids-feature mt-lg-0 mt-md-4 mt-5 mb-3">
+                <a href="{% url 'bloglar' category.slug %}">
+                    <div class="area-box">
+                        <span class="fa fa-dot-circle-o"></span>
+                        <h4 class="title-head">{{category.CategoryName}}</h4>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>

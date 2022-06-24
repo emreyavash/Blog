@@ -1,0 +1,23 @@
+{% load static  %}
+<div class="testimonials pt-2 pb-5">
+    <div class="container pb-lg-5">
+        <div class="owl-testimonial owl-carousel owl-theme mb-md-0 mb-sm-5 mb-4">
+            {% for slider in sliders %}
+            <div class="item">
+                <div class="row slider-info">
+                    <div class="col-lg-8 message-info align-self">
+                        <span class="label-blue mb-sm-4 mb-3">{{slider.category}}</span>
+                        <h3 class="title-big mb-4">{{slider.slider_title}}
+                        </h3>
+                        <p class="message">{{slider.slider_description}}</p>
+                    </div>
+                    <div class="col-lg-4 col-md-8 img-circle mt-lg-0 mt-4">
+                        <img src="{{slider.slider_image.url}}" class="img-fluid radius-image-full" alt="client image">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+       
+        </div>
+    </div>
+</div>
