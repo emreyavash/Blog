@@ -1,0 +1,128 @@
+{% extends 'writer/index.html' %}
+
+{% block title %}Ayarlar{% endblock title %}
+{% block content %}
+   <!-- content -->
+   <div class="container-fluid content-top-gap">
+
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb my-breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ayarlar</li>
+        </ol>
+    </nav>
+    <!-- //breadcrumbs -->
+   
+<section class="forms">
+        <div class="card card_border py-2 mb-4">
+            <div class="card-body">
+                <form  method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-row">
+
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4" class="input__label">Ad</label>
+                            <input type="text" class="form-control input-style" id="inputEmail4" value="{{writer.first_name}}" name="first_name" >
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4" class="input__label">Soyad</label>
+                            <input type="text" class="form-control input-style" id="inputEmail4" value="{{writer.last_name}}" name="last_name" >
+                        </div>
+                    </div>
+                   
+                    <div class="form-group custom-file mt-3">
+                        <img src="{{writer.profil_image.url}}" id="image1" width="200" height="200" alt="">
+                        <input type="hidden" name="hidden_profil_image" value="{{writer.profil_image}}">
+                        <input type="file" name="profil_image" class="custom-file-input" id="files1">
+                        <label class="custom-file-label" for="files1">Profil Resmi</label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                    </div>
+                 
+                    <div class="form-group">
+                        <label for="inputEmail4" class="input__label">Doğum Tarihi</label>
+                        <input type="date" class="form-control input-style" id="inputEmail4" value="{{writer.birthday|date:'Y-m-d'}}" name="birthday" >
+                    </div>
+                     
+                       
+                    <div class="form-group mt-3">
+                        <label for="inputState" class="input__label">Cinsiyet</label>
+                        <select id="inputState" name="gender" class="form-control input-style">
+                            {% if writer.gender %}
+                                <option value="1" selected>Erkek</option>
+                                
+                                <option value="0" >Kadın</option>
+                            {% else %}
+                            <option value="1" >Erkek</option>
+                            
+                            <option value="0" selected>Kadın</option>
+                            {% endif %}
+                           
+                            
+                        </select>
+                    </div>
+           
+                    <button type="submit" class="btn btn-primary btn-style mt-4">Kaydet</button>
+                </form>
+            </div>
+        </div>
+        <!-- //forms 2 -->
+
+
+       
+
+
+</section>
+<section class="forms">
+    <!-- forms 1 -->
+    <div class="card card_border py-2 mb-4">
+        <div class="cards__heading">
+            <h3>Şifre Değiştir <span></span></h3>
+        </div>
+        <div class="card-body">
+            <form action="{% url 'reset_password' writer.id %}" method="post">
+              {% csrf_token %}
+              {% for message in messages  %}
+                <div  class="alert alert-danger" role="alert">
+                    {{message}}
+                </div>
+              {% endfor %}
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="input__label">Eski Şifre</label>
+                    <input type="password" class="form-control input-style" id="exampleInputPassword1" name="old_password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="input__label">Yeni Şifre</label>
+                    <input type="password" class="form-control input-style" id="exampleInputPassword1" name="password1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="input__label">Yeni Şifre</label>
+                    <input type="password" class="form-control input-style" id="exampleInputPassword1" name="password2" placeholder="Password">
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-style mt-4">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+    <!-- //forms  -->
+
+</div>
+<!-- //content -->
+
+<script>
+    document.getElementById("files1").onchange = function () {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById('image1').src = e.target.result;
+        };
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    };
+
+    </script>
+{% endblock content %}

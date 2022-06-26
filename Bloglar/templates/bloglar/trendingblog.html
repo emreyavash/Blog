@@ -18,7 +18,11 @@
                         <a href="#blog-single.html" class="blog-desc">{{tb.blog_title}} </a>
                         <p>{{tb.blog_description|truncatechars:80}}</p>
                         <div class="author align-items-center mt-3">
-                            <img src="{{tb.writer.profil_image.url}}" alt="" class="img-fluid rounded-circle" />
+                            {% if tb.writer.profil_image == "" %}
+                            <img src="{% static 'writer/assets/images/avatar3.jpg' %}" class="img-fluid rounded-circle"alt="author image"  >
+                            {% else %}
+                            <img src="{{tb.writer.profil_image.url}}" class="img-fluid rounded-circle" alt="author image"  >
+                            {% endif %}
                             <ul class="blog-meta">
                                 <li>
                                     <a href="author.html">{{tb.writer.first_name}} {{tb.writer.last_name}}</a> </a>

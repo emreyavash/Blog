@@ -1,0 +1,56 @@
+{% extends 'writer/index.html' %}
+{% block title %}Bloglarım{% endblock title %}
+
+
+{% block content %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div class="container-fluid content-top-gap">
+
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb my-breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Blog</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Bloglarım</li>
+      </ol>
+    </nav>
+    <!-- //breadcrumbs -->
+
+    <!-- card heading -->
+    <div class="cards__heading">
+      <h3>Bloglarım</h3>
+    </div>
+    <!-- //card heading -->
+
+
+    {% if blogs_error %}
+    {{blogs_error}}
+    {% endif %}
+
+    <!-- content block style 2-->
+    {% for wb in writer_blogs  %}
+    <div class="card card_border p-lg-5 p-3 mb-4">
+      <div class="card-body py-3 p-0">
+        <div class="row">
+          <div class="col-lg-6 pr-lg-4" style="width:600px;height:300px" >
+            <img src="{{wb.blog_thumbnail.url}}" style="object-fit:cover;width:600px;height:300px" alt="" class="img-fluid rounded" />
+          </div>
+          <div class="col-lg-6 align-self pl-lg-4 mt-lg-0 mt-4">
+            <h3 class="block__title mb-lg-4">{{wb.blog_title}}</h3>
+            <p class="mb-3">{{wb.blog_description|truncatechars:200}}</p>
+
+            <a href="{% url 'blog_detail' wb.id %}" class="btn btn-style btn-primary mr-2">Blog'a Git</a>
+            <a href="{% url 'edit_blog' wb.id %}" class="btn btn-style border-btn mr-2">Düzenle</a>
+            <a href="{% url 'delete_blog' wb.id %}" id="sil" class="btn btn-style btn-danger">Sil</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- //content block style 2 -->
+
+
+
+
+  </div>
+  {% endblock content %}

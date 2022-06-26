@@ -9,7 +9,12 @@
                     <a href="{% url 'blog_detail' mb.id %}" class="blog-desc">{{mb.blog_title}}
                     </a>
                     <div class="author align-items-center">
-                        <img src="{{mb.writer.profil_image.url}}" alt="" class="img-fluid rounded-circle" />
+                   
+                        {% if mb.writer.profil_image == "" %}
+                                        <img src="{% static 'writer/assets/images/avatar3.jpg' %}" class="img-fluid rounded-circle"alt="author image"  >
+                                        {% else %}
+                                        <img src="{{mb.writer.profil_image.url}}" class="img-fluid rounded-circle" alt="author image"  >
+                                        {% endif %}
                         <ul class="blog-meta">
                             <li>
                                 <a href="author.html">{{mb.writer.first_name}} {{mb.writer.last_name}}</a> </a>

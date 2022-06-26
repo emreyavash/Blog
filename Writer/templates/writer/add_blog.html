@@ -1,0 +1,72 @@
+{% extends 'writer/index.html' %}
+{% block title %}Blog Ekle{% endblock title %}
+{% block content %}
+
+    <!-- content -->
+    <div class="container-fluid content-top-gap">
+
+        <!-- breadcrumbs -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb my-breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blog Ekle</li>
+            </ol>
+        </nav>
+        <!-- //breadcrumbs -->
+        <!-- forms -->
+        <section class="forms">
+      
+
+            <!-- forms 2 -->
+            <div class="card card_border py-2 mb-4">
+                <div class="card-body">
+                    <form  method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="inputEmail4" class="input__label">Blog Başlığı</label>
+                            <input type="text" class="form-control input-style" id="inputEmail4" name="title" placeholder="Blog Başlık">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress" class="input__label">Blog Açıklama</label>
+                            <textarea col="5" row="10"  class="form-control input-style" name="description"></textarea>
+                        </div>
+                        <div class="form-group custom-file mt-3">
+                            <input type="file" name="thumbnail" class="custom-file-input" id="validatedCustomFile" required>
+                            <label class="custom-file-label" for="validatedCustomFile">Blog Küçük Resim</label>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                        </div>
+                        <div class="form-group custom-file mt-3">
+                            <input type="file" name="image" class="custom-file-input" id="validatedCustomFile" required>
+                            <label class="custom-file-label" for="validatedCustomFile">Blog İçi Resim</label>
+                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                        </div>
+                        
+                           
+                        <div class="form-group mt-3">
+                            <label for="inputState" class="input__label">Kategori</label>
+                            <select id="inputState" name="category" class="form-control input-style">
+                                {% for category in categories  %}
+                                <option value="{{category.id}}" >{{category.CategoryName}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+               
+                        <button type="submit" class="btn btn-primary btn-style mt-4">Oluştur</button>
+                    </form>
+                </div>
+            </div>
+            <!-- //forms 2 -->
+
+
+           
+
+        </section>
+        <!-- //forms -->
+        </section>
+        <!-- //forms  -->
+
+    </div>
+    <!-- //content -->
+
+
+{% endblock content %}

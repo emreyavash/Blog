@@ -18,7 +18,11 @@
             </a>
             <p>{{blog.blog_description|truncatechars:80}}</p>
             <div class="author align-items-center mt-3 mb-1">
-                <img src="{{blog.writer.profil_image.url}}" alt="" class="img-fluid rounded-circle" />
+                {% if blog.writer.profil_image == "" %}
+                <img src="{% static 'writer/assets/images/avatar3.jpg' %}" class="img-fluid rounded-circle"alt="author image"  >
+                {% else %}
+                <img src="{{blog.writer.profil_image.url}}" class="img-fluid rounded-circle" alt="author image"  >
+                {% endif %}
                 <ul class="blog-meta">
                     <li>
                         <a href="author.html">{{blog.writer.first_name}} {{blog.writer.last_name}}</a> </a>

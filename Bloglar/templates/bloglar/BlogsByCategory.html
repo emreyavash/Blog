@@ -1,4 +1,5 @@
 {% extends 'index.html' %}
+{% load static %}
 {% block title %}{{category.CategoryName}}{% endblock title %}
 {% block content %}
 <div class="w3l-homeblock2 w3l-homeblock5 py-5">
@@ -20,7 +21,12 @@
                             <a href="{% url 'blog_detail' blog.id %}" class="blog-desc">{{blog.blog_title}}
                             </a>
                             <div class="author align-items-center">
-                                <img src="{{blog.writer.profil_image.url}}" alt="" class="img-fluid rounded-circle" />
+                                
+                                {% if blog.writer.profil_image == "" %}
+                                        <img src="{% static 'writer/assets/images/avatar3.jpg' %}" class="img-fluid rounded-circle"alt="author image"  >
+                                        {% else %}
+                                        <img src="{{blog.writer.profil_image.url}}" class="img-fluid rounded-circle" alt="author image"  >
+                                        {% endif %}
                                 <ul class="blog-meta">
                                     <li>
                                         <a href="author.html">{{blog.writer.first_name}} {{blog.writer.last_name}}</a> 

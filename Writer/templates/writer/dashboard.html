@@ -1,0 +1,119 @@
+{% extends 'writer/index.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock title %}
+{% block content %}
+<div class="container-fluid content-top-gap">
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb my-breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Anasayfa</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+      </ol>
+    </nav>
+    <div class="welcome-msg pt-3 pb-4">
+      <h1>Merhaba <span class="text-primary">{{writer.first_name}} {{writer.last_name}}</span>, Tekrar Hoşgeldin</h1>
+    </div>
+
+    <!-- statistics data -->
+    <div class="statistics">
+      <div class="row">
+        <div class="col-xl-6 pr-xl-2 statistics-grid">
+          
+              <div class="card card_border border-primary-top p-4">
+                <i class="lnr lnr-users"> </i>
+                <h3 class="text-primary number">{% if writer_blogs.count is Null %}0{% endif %} {{writer_blogs.count}}</h3>
+                <p class="stat-text">Yayınladığın Toplam Blog</p>
+              </div>
+            
+          
+        </div>
+        <div class="col-xl-6 pl-xl-2 statistics-grid">
+          
+              <div class="card card_border border-primary-top p-4">
+                <i class="lnr lnr-cloud-download"> </i>
+                <h3 class="text-success number">{% if blog_comments.count is Null %}0{% endif %} {{blog_comments.count}}</h3>
+                <p class="stat-text">Bloglarına Gelen Toplam Yorum</p>
+              </div>
+           
+          
+        </div>
+      </div>
+    </div>
+    <!-- //statistics data -->
+
+
+
+ 
+
+
+    <div class="card card_border p-lg-5 p-3 mb-4">
+        <div class="card-body py-3 p-0">
+          <h3 class="block__title mb-lg-4">Son Paylaştığın Bloglar</h3>
+          <p>Paylaştığın son 3 bloğu içerir.</p>
+
+          <div class="row">
+            {% if writer_error %}
+            {{writer_error}}
+            {% endif %}
+            {% for wb in writer_blogs  %}
+                <div class="col-md-4 column mt-md-3 mt-3">
+                <a href="{% url 'blog_detail' wb.id %}" style="width:350px; height:200px;"><img class="img-fluid rounded" src="{{wb.blog_thumbnail.url}}" style="object-fit:cover;width: 350px;
+                    height: 200px;"  alt=""></a>
+                <a href="{% url 'blog_detail' wb.id %}">
+                    <p class="grid-para">{{wb.blog_title}}</p>
+                </a>
+                <a href="{% url 'bloglar' wb.category.slug %}">
+                    <div class="row">
+                        <p class="col-6 paragraph text-primary">{{wb.category.CategoryName}}</p>
+                        <span class="col-6 paragraph text-primary">{{wb.blog_comment.count}} Yorum</span>
+                    </div>
+                </a>
+              
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+    </div>
+
+    <!-- accordions -->
+    <div class="accordions">
+        <div class="row">
+          <!-- accordion style 1 -->
+          <div class="col-lg-12 mb-4">
+            <div class="card card_border">
+              <div class="card-header chart-grid__header">
+                Son Gelen Yorumlar
+                <p>Bloglara yapılan son 6 yorumu içerir.</p>
+              </div>
+              <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                    {% if comments_error %}
+                        {{comments_error}}
+                    {% else %}
+                        {% for bc in blog_comments  %}
+                        <div class="card">
+                            <div class="card-header bg-white p-0" id="headingOne">
+                            <a href="#" class="card__title p-3" data-toggle="collapse" data-target="#comment{{bc.id}}"
+                                aria-expanded="true" aria-controls="collapseOne">{{bc.blog.blog_title}} --- {{bc.sender_name}}  </a>
+                            </div>
+        
+                            <div id="comment{{bc.id}}" class="collapse" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <div class="card-body para__style">
+                                {{bc.comment}}
+                            </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- //accordion style 1 -->
+        </div>
+      </div>
+      <!-- //accordions -->
+  </div>
+  {% endblock content %}

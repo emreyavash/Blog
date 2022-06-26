@@ -1,0 +1,101 @@
+{% extends 'writer/index.html' %}
+
+{% block title %}Blog Düzenle{% endblock title %}
+{% block content %}
+   <!-- content -->
+   <div class="container-fluid content-top-gap">
+
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb my-breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Blog Ekle</li>
+        </ol>
+    </nav>
+    <!-- //breadcrumbs -->
+    <!-- forms -->
+    <section class="forms">
+  
+
+        <!-- forms 2 -->
+        <div class="card card_border py-2 mb-4">
+            <div class="card-body">
+                <form  method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="inputEmail4" class="input__label">Blog Başlığı</label>
+                        <input type="text" class="form-control input-style" id="inputEmail4" value="{{blog.blog_title}}" name="title" placeholder="Blog Başlık">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress" class="input__label">Blog Açıklama</label>
+                        <textarea col="5" row="10"  class="form-control input-style" name="description">{{blog.blog_description}}</textarea>
+                    </div>
+                    <div class="form-group custom-file mt-3">
+                        <img src="{{blog.blog_thumbnail.url}}" id="image1" width="200" height="200" alt="">
+                        <input type="hidden" name="hidden_thumbnail" value="{{blog.blog_thumbnail}}">
+                        <input type="file" name="thumbnail" class="custom-file-input" id="files1">
+                        <label class="custom-file-label" for="files1">Blog Küçük Resim</label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                    </div>
+                    <div class="form-group custom-file mt-3">
+                        <img src="{{blog.blog_image.url}}" id="image2" width="200" height="200" alt="">
+                        <input type="hidden" name="hidden_image" value="{{blog.blog_image}}">
+                        <input type="file" name="image" class="custom-file-input" id="files2">
+                        <label class="custom-file-label" for="files2">Blog İçi Resim</label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                    </div>
+                    
+                       
+                    <div class="form-group mt-3">
+                        <label for="inputState" class="input__label">Kategori</label>
+                        <select id="inputState" name="category" class="form-control input-style">
+                            <option value="{{blog.category.id}}" selected>{{blog.category.CategoryName}}</option>
+                            {% for category in categories  %}
+                            <option value="{{category.id}}" >{{category.CategoryName}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+           
+                    <button type="submit" class="btn btn-primary btn-style mt-4">Oluştur</button>
+                </form>
+            </div>
+        </div>
+        <!-- //forms 2 -->
+
+
+       
+
+    </section>
+    <!-- //forms -->
+    </section>
+    <!-- //forms  -->
+
+</div>
+<!-- //content -->
+
+<script>
+    document.getElementById("files1").onchange = function () {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById('image1').src = e.target.result;
+        };
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    };
+    document.getElementById("files2").onchange = function () {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById('image2').src = e.target.result;
+        };
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    };
+    
+    </script>
+{% endblock content %}

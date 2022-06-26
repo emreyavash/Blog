@@ -25,4 +25,5 @@ urlpatterns = [
     path("",include("Writer.urls")),
     path("",include("Bloglar.urls")),
     path("",include("Contact.urls")),
+    path("",include("OturumIslemleri.urls")),
 ]+ static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

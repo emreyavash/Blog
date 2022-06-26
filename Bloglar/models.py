@@ -30,4 +30,5 @@ class BlogComment(models.Model):
     sender_email = models.EmailField()
     comment = models.TextField()
     created_commnet_date = models.DateField(auto_now_add=True,editable=False)
+    writer = models.ForeignKey(CustomUser,related_name="blog_comment_writer",null=False,on_delete=models.CASCADE)
     

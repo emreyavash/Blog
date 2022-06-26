@@ -25,7 +25,7 @@
                 </ul>
             </div>
         </div>
-        <div class="image mb-sm-5 mb-4" style="border:1px solid black;">
+        <div class="image mb-sm-5 mb-4" >
             <img src="{{blog.blog_image.url}}" alt="" style="object-fit:cover; width:100%;height:650px;"  class="img-fluid radius-image-full">
         </div>
         <div class="container">
@@ -122,8 +122,11 @@
                                     <h4>About author</h4>
                                 </div>
                                 <div class="author-detalis">
-                                    <a href="#author" class="author-image"><img src="{{blog.writer.profil_image.url}}"
-                                            alt="author image" class="img-fluid"></a>
+                                    <a href="#author" class="author-image">{% if blog.writer.profil_image == "" %}
+                                        <img src="{% static 'writer/assets/images/avatar3.jpg' %}" class="img-fluid"alt="author image"  >
+                                        {% else %}
+                                        <img src="{{blog.writer.profil_image.url}}" class="img-fluid" alt="author image"  >
+                                        {% endif %}</a>
                                     <div class="author-info">
                                         <a href="#author-name" class="author-name">{{blog.writer.first_name}} {{blog.writer.last_name}}</a>
                                         <a href="#follow" class="btn btn-outline-primary">Follow </a>
@@ -138,13 +141,12 @@
                         <!--Blog Category Widget-->
                         <div class="sidebar-widget sidebar-blog-category">
                             <div class="sidebar-title">
-                                <h4>Categories</h4>
+                                <h4>Kategoriler</h4>
                             </div>
                             <ul class="blog-cat">
-                                <li><a href="#url">Beauty </a></li>
-                                <li><a href="#url">Fashion and Style</a></li>
-                                <li><a href="#url">Food and wellness</a></li>
-                                <li><a href="#url">Lifestyle</a></li>
+                                {% for category in categories %}
+                                <li><a href="{% url 'bloglar' category.slug %}">{{category.CategoryName}} </a></li>
+                                {% endfor %}
                             </ul>
                         </div>
 
@@ -199,7 +201,12 @@
                         </a>
                         <p>{{lb.blog_description|truncatechars:70}}</p>
                         <div class="author align-items-center mt-3 mb-1">
-                            <img src="{{lb.writer.profil_image.url}}" alt="" class="img-fluid rounded-circle">
+                           
+                            {% if lb.writer.profil_image == "" %}
+                                        <img src="{% static 'writer/assets/images/avatar3.jpg' %}" class="img-fluid rounded-circle"alt="author image"  >
+                                        {% else %}
+                                        <img src="{{lb.writer.profil_image.url}}" class="img-fluid rounded-circle" alt="author image"  >
+                                        {% endif %}
                             <ul class="blog-meta">
                                 <li>
                                     <a href="author.html">{{lb.writer.first_name}} {{lb.writer.last_name}}</a>
