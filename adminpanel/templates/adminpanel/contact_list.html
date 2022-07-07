@@ -1,0 +1,45 @@
+{% extends 'adminpanel/index.html' %}
+{% load static %}
+{% block title %}İletişim{% endblock title %}
+
+{% block content %}
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="tables">
+            <div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
+                <h4>İletişim</h4>
+                
+                <table class="table table-hover"> 
+                    <thead> 
+                        <tr> 
+                            <th>#</th> 
+                            <th>Ad-Soyad</th> 
+                            <th>E-Mail</th> 
+                            <th>Konu</th> 
+                            <th>Sil</th> 
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        {% for contact in contacts  %}                        
+                            <tr> 
+                                
+                                <th scope="row">{{forloop.counter}}</th> 
+                                
+                                <td>{{contact.name}}</td> 
+                                <td>{{contact.email}}</td> 
+                                <td>{{contact.subject}}</td> 
+                                
+                                
+                                
+                                <td><a href="{% url 'contact' contact.id  %}" class="btn btn-success">Mesajı Gör</a></td> 
+                                <td><a href="{% url 'contact_delete' contact.id  %}" class="btn btn-danger">Sil</a></td> 
+                
+                            </tr> 
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

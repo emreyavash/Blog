@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Admin Panel | {% block title %}{% endblock title %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+{% include 'adminpanel/partials/links.html' %}
+
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+	<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+		<!--left-fixed -navigation-->
+		{% include 'adminpanel/partials/sliderleftmenu.html' %}
+	</div>
+		<!--left-fixed -navigation-->
+		
+		<!-- header-starts -->
+		{% include 'adminpanel/partials/header.html' %}
+		
+		<!-- //header-ends -->
+		<!-- main content start-->
+		{% block content %}{% endblock content %}
+	<!-- //for index page weekly sales java script -->
+	
+
+<!-- side nav js -->
+<script src="{% static 'adminpanel/js/SidebarNav.min.js' %}" type='text/javascript'></script>
+<script>
+$('.sidebar-menu').SidebarNav()
+</script>
+<!-- //side nav js -->
+<!-- Classie --><!-- for toggle left push menu script -->
+<script src="{% static 'adminpanel/js/classie.js' %}"></script>
+<script>
+    var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+        showLeftPush = document.getElementById( 'showLeftPush' ),
+        body = document.body;
+        
+    showLeftPush.onclick = function() {
+        classie.toggle( this, 'active' );
+        classie.toggle( body, 'cbp-spmenu-push-toright' );
+        classie.toggle( menuLeft, 'cbp-spmenu-open' );
+        disableOther( 'showLeftPush' );
+    };
+    
+
+    function disableOther( button ) {
+        if( button !== 'showLeftPush' ) {
+            classie.toggle( showLeftPush, 'disabled' );
+        }
+    }
+</script>
+<!-- //Classie --><!-- //for toggle left push menu script -->
+<script src="{% static 'adminpanel/js/jquery.nicescroll.js' %}"></script>
+<script src="{% static 'adminpanel/js/scripts.js' %}"></script>
+	<!-- Bootstrap Core JavaScript -->
+   <script src="{% static 'adminpanel/js/bootstrap.js' %}"> </script>
+	<!-- //Bootstrap Core JavaScript -->
+	
+</body>
+</html>

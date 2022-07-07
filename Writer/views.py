@@ -1,4 +1,3 @@
-from asyncore import write
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.db.models import Q
@@ -8,6 +7,7 @@ from .models import CustomUser
 from Bloglar.models import Blog,BlogComment
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
+from channels.layers import get_channel_layer
 # Create your views here.
 
 def user_authenticated(user):
@@ -27,13 +27,16 @@ def writerDashboard(request,id):
         context={
             'writer':writer,
             'writer_blogs':writer_blogs,
-            'blog_comments':blog_comments
+            'blog_comments':blog_comments,
+            'room_name':"broadcast"
         }
     elif blog_comments.exists():
         context={
             'writer_error':"Şu an da paylaştığınız bloğunuz yok.",
             'writer':writer,
-            'blog_comments':blog_comments
+            'blog_comments':blog_comments,
+            'room_name':"broadcast"
+
             
         }
     elif writer_blogs.exists():
@@ -41,6 +44,7 @@ def writerDashboard(request,id):
             'comments_error':"Şu an da yorum yapılan bloğunuz yok.",
             'writer':writer,
             'writer_blogs':writer_blogs,
+            'room_name':"broadcast"
             
         }
     else:
@@ -48,6 +52,7 @@ def writerDashboard(request,id):
             'comments_error':"Şu an da yorum yapılan bloğunuz yok.",
             'writer':writer,
             'writer_error':"Şu an da paylaştığınız bloğunuz yok.",
+            'room_name':"broadcast"
             
         }
     return render(request,'writer/dashboard.html',context)
@@ -168,3 +173,4 @@ def reset_password(request,id):
         else:
             messages.error(request,'Eski Şifreniz Eşleşmiyor.')
             return redirect('settings_user',writer.id)
+

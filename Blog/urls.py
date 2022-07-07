@@ -26,4 +26,6 @@ urlpatterns = [
     path("",include("Bloglar.urls")),
     path("",include("Contact.urls")),
     path("",include("OturumIslemleri.urls")),
+    path("",include("Notifications.urls")),
+    path("admin-panel/",include("adminpanel.urls")),
 ]+ static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

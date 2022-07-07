@@ -32,7 +32,7 @@
                                         <a href="author.html">{{blog.writer.first_name}} {{blog.writer.last_name}}</a> 
                                     </li>
                                     <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> {{blog.create_blog_date}} </span>
+                                        <span class="meta-value"> {{blog.create_blog_date}} </span> <span class="meta-value ml-2"><span class="fa fa-clock-o"></span> {{blog.create_blog_date|timesince}}</span>
                                     </li>
                                 </ul>
                             </div>

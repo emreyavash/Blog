@@ -1,0 +1,92 @@
+{% extends 'adminpanel/index.html' %}
+{% load static %}
+{% block title %}Slider Blog Düzenle{% endblock title %}
+
+{% block content %}
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="forms"></div>
+        <div class="row">
+            <h3 class="title1">Slider Blog Düzenle</h3>
+            <div class="form-three widget-shadow">
+                <form method="post" enctype="multipart/form-data" class="form-horizontal">
+                    {% csrf_token %}
+                   
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Slider Blog Başlığı</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="slider_title" class="form-control1" id="focusedinput" value="{{slider_blog.slider_title}}" placeholder="Default Input">
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Blog Açıklama</label>
+                        <div class="col-sm-8">
+                            <textarea name="slider_description" class="form-control1" id="" cols="50" style="height: 250px;" rows="50">{{slider_blog.slider_description}}</textarea>
+                        </div>
+                        
+                    </div>
+                  
+             
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Slider Resim</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="slider_image" class="form-control1" id="focusedinput" placeholder="Default Input">
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block">Seçili Fotoğraf: </p><a href="{{slider_blog.slider_image.url}}" target="_blank" >Görmek için tıkla.</a>
+                            <input type="hidden" name="hidden_image" value="{{slider_blog.slider_image}}">
+                        </div>
+                    </div>
+              
+                    
+                    <div class="form-group">
+                        <label for="selector1" class="col-sm-2 control-label">Kategori</label>
+                        <div class="col-sm-8"><select name="category" id="selector1" class="form-control1">
+                            <option selected>{{slider_blog.category.CategoryName}}</option>
+
+                            {% for category in categories  %}
+                            <option>{{category.CategoryName}}</option>
+                            {% endfor %}
+                    
+                        </select></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="radio" class="col-sm-2 control-label">Blog Durumu</label>
+                        <div class="col-sm-8">
+                            {% if slider_blog.slider_status %}
+                            <div class="radio block"><label><input type="radio" checked="" name="status" value="1"> Etkin</label></div>
+                            <div class="radio block"><label><input type="radio" name="status" value="0"> Etkin Değil</label></div>
+                            {% else %}
+                            <div class="radio block"><label><input type="radio"  name="status" value="1"> Etkin </label></div>
+                            <div class="radio block"><label><input type="radio"name="status" value="0" checked> Etkin Değil</label></div>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="smallinput" class="col-sm-2 control-label label-input-sm">Blog Oluşturma Tarihi</label>
+                        <div class="col-sm-8">
+                            <input disabled type="text" class="form-control1 input-sm" id="smallinput"  value="{{slider_blog.create_slider_date}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-10 right">
+                            <button type="submit" class="btn btn-secondary mx-5">Kaydet</button>
+                            </div>
+                            <div class="col-sm-2">
+                            <a href="{% url 'slider_blog_delete' slider_blog.id %}" class="btn btn-danger">Sil</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

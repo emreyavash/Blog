@@ -4,12 +4,12 @@
         <h3 class="section-title-left mb-4"> Trending Now</h3>
     <div class="row">
         {% for tb in trendingblogs  %}
-        <div class="col-lg-6 mt-lg-0 mt-4">
+        <div class="col-lg-6 mt-lg-0 mt-4"style="height: 350;">
             <div class="bg-clr-white hover-box">
                 <div class="row">
-                    <div class="col-sm-6 position-relative">
-                        <a href="#blog-single.html">
-                            <img class="card-img-bottom d-block radius-image-full" src="{{tb.blog_thumbnail.url}}"
+                    <div class="col-sm-6 position-relative" >
+                        <a href="{% url 'blog_detail' tb.id %}" >
+                            <img class="card-img-bottom d-block radius-image-full" style="width: 330px;height: 350; object-fit:fill;" src="{{tb.blog_thumbnail.url}}"
                                 alt="Card image cap">
                         </a>
                     </div>

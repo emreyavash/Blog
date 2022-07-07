@@ -1,0 +1,98 @@
+{% extends 'adminpanel/index.html' %}
+{% load static %}
+{% block title %}Kullanıcı Düzenle{% endblock title %}
+
+{% block content %}
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="forms"></div>
+        <div class="row">
+            <h3 class="title1">Kullanıcı Düzenle</h3>
+            <div class="form-three widget-shadow">
+                <form method="post" enctype="multipart/form-data" class="form-horizontal">
+                    {% csrf_token %}
+                   
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Adı</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="first_name" class="form-control1" id="focusedinput" value="{{user.first_name}}" placeholder="Default Input">
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Soyadı</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="last_name" class="form-control1" id="focusedinput" value="{{user.last_name}}" placeholder="Default Input">
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">E-Mail</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="email" class="form-control1" id="focusedinput" value="{{user.email}}" placeholder="Default Input">
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Profil Fotoğrafı</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="profil_image" class="form-control1" id="focusedinput" placeholder="Default Input">
+                        </div>
+                        <div class="col-sm-2">
+                            <p class="help-block">Önceki Fotoğraf: </p><a href="{{user.profil_image.url}}" target="_blank" >Görmek için tıkla.</a>
+                            <input type="hidden" name="hidden_image" value="{{user.profil_image}}">
+                        </div>
+                    </div>
+                  
+                    <div class="form-group">
+                        <label for="radio" class="col-sm-2 control-label">Cinsiyet</label>
+                        {% if user.gender %}
+                            <div class="col-sm-8">
+                                <div class="radio-inline"><label><input name="gender" type="radio" value="1" checked=""> Erkek</label></div>
+                                <div class="radio-inline"><label><input name="gender" type="radio"value="0" > Kadın</label></div>
+                                
+                            </div>
+                        {% else %}
+                            <div class="col-sm-8">
+                                <div class="radio-inline"><label><input name="gender" type="radio" value="1"> Erkek</label></div>
+                                <div class="radio-inline"><label><input name="gender" type="radio" value="0" checked=""> Kadın</label></div>
+                                
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="radio" class="col-sm-2 control-label">Aktif</label>
+                        {% if user.is_active %}
+                            <div class="col-sm-8">
+                                <div class="radio-inline"><label><input name="is_active" type="radio" value="1" checked=""> Aktif Et</label></div>
+                                <div class="radio-inline"><label><input name="is_active" type="radio"value="0" > Aktif Değil</label></div>
+                                
+                            </div>
+                        {% else %}
+                        <div class="col-sm-8">
+                            <div class="radio-inline"><label><input name="is_active" type="radio" value="1" > Aktif Et</label></div>
+                            <div class="radio-inline"><label><input name="is_active" type="radio"value="0" checked=""> Aktif Değil</label></div>
+                            
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-10 right">
+                            <button type="submit" class="btn btn-secondary mx-5">Kaydet</button>
+                            </div>
+                            <div class="col-sm-2">
+                            <a href="{% url 'user_delete' user.id %}" class="btn btn-danger">Sil</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

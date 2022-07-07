@@ -1,0 +1,48 @@
+{% extends 'adminpanel/index.html' %}
+{% load static %}
+{% block title %}Slider Blog{% endblock title %}
+
+{% block content %}
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="tables">
+            <div class="bs-example widget-shadow" data-example-id="hoverable-table"> 
+                <h4>Slider Bloglar</h4>
+                <a href="{% url 'slider_add' %}" class="btn btn-success">Slider Blog Ekle</a>
+                <table class="table table-hover"> 
+                    <thead> 
+                        <tr> 
+                            <th>#</th> 
+                            <th>Blog Başlığı</th> 
+                            <th>Blog Kategori</th> 
+                            <th>Blog Etkin</th> 
+                            <th>Düzenle</th> 
+                            <th>Sil</th> 
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        {% for slider_blog in slider_blogs  %}                        
+                            <tr> 
+                                
+                                <th scope="row">{{forloop.counter}}</th> 
+                                
+                                <td>{{slider_blog.slider_title}}</td> 
+                                <td>{{slider_blog.category.CategoryName}}</td> 
+                                {% if slider_blog.slider_status %}
+                                    <td style="color:green;text-align:center"><i class="fa fa-thumbs-up" ></i></td> 
+                                
+                                {% else %}
+                                <td style="color:red;text-align:center"><i class="fa  fa-thumbs-down" ></i></td> 
+                                {% endif %}
+                                <td><a href="{% url 'slider_blog_edit' slider_blog.id %}" class="btn btn-primary">Düzenle</a></td> 
+                                <td><a href="{% url 'slider_blog_delete' slider_blog.id %}" class="btn btn-danger">Sil</a></td> 
+                
+                            </tr> 
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

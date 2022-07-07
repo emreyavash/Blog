@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import redirect, render
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
@@ -6,6 +7,7 @@ from Category.models import Category
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.db.models import Q
+from Writer.models import CustomUser
 # Create your views here.
 
 class BlogByCategoryListView(ListView):
@@ -27,6 +29,7 @@ class BlogDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         blog= Blog.objects.get(id=self.kwargs['pk'])
+       
         context['resentPosts'] = Blog.objects.order_by('-create_blog_date')[:3]
         context['likeBlogs'] = Blog.objects.exclude(id = self.kwargs['pk']).filter(category = blog.category)[:3]
       

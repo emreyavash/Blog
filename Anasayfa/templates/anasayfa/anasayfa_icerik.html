@@ -3,8 +3,15 @@
 {% block title %}Anasayfa{% endblock title %}
 
 {% block content %}
-
+    {% if messages %}
+        {% for message in messages  %}
+            <div class="text-alert">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
 {% include 'partials/homeblock.html' %}
+
 <section class="w3l-testimonials" id="testimonials">
     <!-- main-slider -->
     {% include 'bloglar/sliderblog.html' %}

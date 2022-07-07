@@ -1,0 +1,81 @@
+{% extends 'adminpanel/index.html' %}
+{% load static %}
+{% block title %}Slider Blog Ekle{% endblock title %}
+
+{% block content %}
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="forms"></div>
+        <div class="row">
+            <h3 class="title1">Slider Blog Ekle</h3>
+            <div class="form-three widget-shadow">
+                <form method="post" enctype="multipart/form-data" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Slider Başlığı</label>
+                        <div class="col-sm-8">
+                            <input  type="text" name="slider_title" class="form-control1" id="focusedinput" >
+                        </div>
+                        
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Slider Açıklama</label>
+                        <div class="col-sm-8">
+                            <textarea name="slider_description" class="form-control1" id="" cols="50" style="height: 250px;" rows="50">{{blog.blog_description}}</textarea>
+                        </div>
+                        
+                    </div>
+                  
+                
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Blog Resim</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="slider_image" class="form-control1" id="focusedinput" placeholder="Default Input">
+                        </div>
+                   
+                    </div>
+              
+                    
+                    <div class="form-group">
+                        <label for="selector1" class="col-sm-2 control-label">Kategori</label>
+                        <div class="col-sm-8"><select name="category" id="selector1" class="form-control1">
+                            <option selected>{{blog.category.CategoryName}}</option>
+
+                            {% for category in categories  %}
+                            <option>{{category.CategoryName}}</option>
+                            {% endfor %}
+                    
+                        </select></div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="radio" class="col-sm-2 control-label">Blog Durumu</label>
+                        <div class="col-sm-8">
+                            {% if blog.blog_status %}
+                            <div class="radio block"><label><input type="radio" checked="" name="status" value="1"> Etkin</label></div>
+                            <div class="radio block"><label><input type="radio" name="status" value="0"> Etkin Değil</label></div>
+                            {% else %}
+                            <div class="radio block"><label><input type="radio"  name="status" value="1"> Etkin </label></div>
+                            <div class="radio block"><label><input type="radio"name="status" value="0" checked> Etkin Değil</label></div>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                   
+                
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-10 right">
+                            <button type="submit" class="btn btn-secondary mx-5">Ekle</button>
+                           
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "channels",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +44,9 @@ INSTALLED_APPS = [
     'Writer',
     'Bloglar',
     'Contact',
-    'OturumIslemleri'
+    'OturumIslemleri',
+    'adminpanel',
+    'Notifications',
     
 ]
 SWEETIFY_SWEETALERT_LIBRARY = 'sweetalert2'
@@ -83,6 +86,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Blog.wsgi.application'
+ASGI_APPLICATION = 'Blog.asgi.application'
+
 
 
 # Database
@@ -146,3 +151,12 @@ MEDIA_URL ="/images/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL ="Writer.CustomUser"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        
+    },
+    'CONFIG': {
+        "hosts": [('127.0.0.1',6379)],
+    },
+}
